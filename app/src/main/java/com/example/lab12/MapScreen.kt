@@ -30,16 +30,9 @@ fun MapScreen() {
             cameraPositionState = cameraPositionState
         ) {
             // Añadir marcador en Arequipa Perú
-            // Dentro de tu función donde defines el marcador
             val context = LocalContext.current
-
-// Cargar el Bitmap desde el recurso drawable
             val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.logo)
-
-// Escalar el Bitmap para que tenga un tamaño más pequeño
             val scaledBitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false) // Cambia el tamaño aquí (100x100 es un ejemplo)
-
-// Convertir el Bitmap escalado a BitmapDescriptor
             val customMarker = BitmapDescriptorFactory.fromBitmap(scaledBitmap)
 
             Marker(
@@ -47,6 +40,20 @@ fun MapScreen() {
                 icon = customMarker, // Usar el marcador escalado
                 title = "Arequipa, Perú"
             )
+            val locations = listOf(
+                LatLng(-16.433415,-71.5442652), // JLByR
+                LatLng(-16.4205151,-71.4945209), // Paucarpata
+                LatLng(-16.3524187,-71.5675994) // Zamacola
+            )
+
+
+            locations.forEach { location ->
+                Marker(
+                    state = rememberMarkerState(position = location),
+                    title = "Ubicación",
+                    snippet = "Punto de interés"
+                )
+            }
 
 
 
